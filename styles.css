@@ -27,11 +27,13 @@ nav {
     height: 60px;
     padding: 0 20px;
     box-sizing: border-box;
+    border-bottom: 1px solid #99999955;
     display: flex;
     justify-content: center;
     list-style-type: none;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(6px) saturate(0.8);
 }
 
 nav ul {
