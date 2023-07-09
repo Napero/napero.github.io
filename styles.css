@@ -54,7 +54,26 @@ nav ul li a {
     text-decoration: none;
 }
 
+nav ul li a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
 nav ul li a:hover {
+    text-decoration: underline;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ff00ff;
+}
+
+a:hover {
     text-decoration: underline;
 }
 
@@ -114,11 +133,6 @@ nav ul li a:hover {
     margin: 0px;
     color: #ffffff;
     text-align: left;
-}
-
-.link {
-    color: #ffffff;
-    text-decoration: underline;
 }
 
 .material-icons {
