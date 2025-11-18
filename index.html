@@ -1,45 +1,637 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Napero</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napero // Developer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="bg.css">
-    <script src="randomcat.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="translations.js"></script>
 </head>
 <body>
-    <div class="circles">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    <!-- Background pattern canvas -->
+    <canvas id="bg-canvas"></canvas>
     
-    <nav class="fade-in">
-        <ul>
-            <li><a href="#"><i class="material-icons">home</i>Home</a></li>
-            <li><a href="about.html"><i class="material-icons">search</i>About</a></li>
-            <li><a href="projects.html"><i class="material-icons">data_object</i>Projects</a></li>
-            <li><a href="fun.html"><i class="material-icons">celebration</i>Fun</a></li>
-            <li><a href="contact.html"><i class="material-icons">mail</i>Contact</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="bracket">[</span>
+                <span class="name">Napero</span>
+                <span class="bracket">]</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">
+                    <span class="symbol">λ</span> <span data-translate="nav-home">home</span>
+                </a>
+                <a href="#about" class="nav-link">
+                    <span class="symbol">∫</span> <span data-translate="nav-about">about</span>
+                </a>
+                <a href="#projects" class="nav-link">
+                    <span class="symbol">Σ</span> <span data-translate="nav-projects">projects</span>
+                </a>
+                <a href="#skills" class="nav-link">
+                    <span class="symbol">π</span> <span data-translate="nav-skills">skills</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span class="symbol">∇</span> <span data-translate="nav-contact">contact</span>
+                </a>
+                <button id="lang-toggle" class="lang-toggle nav-link" title="Change Language / Cambiar Idioma">
+                    <span class="symbol"><i data-lucide="globe"></i></span> <span class="lang-icon">EN</span>
+                </button>
+            </div>
+        </div>
     </nav>
 
-    <section id="main" class="fade-in">
-        <h1 class="name">Napero</h1>
-        <p>Welcome to my awesome page! :D</p>
-        <p class="wip">It's still under construction.</p>
-        <p>But check out this nyan cat gif!</p>
-        <img id="catGif" src="" alt="Random Gif">
-        <p class="wip">It changes every time you reload the page! :o</p>
-        <p class="wip">(I just needed an excuse to use some js here lol)</p>	
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-grid">
+                <div class="grid-pattern"></div>
+            </div>
+            <div class="hero-text">
+                <div class="glitch-wrapper">
+                    <h1 class="hero-title" data-text="Napero">Napero</h1>
+                </div>
+                <div class="typing-container">
+                    <span class="prompt">></span>
+                    <span class="typed-text"></span>
+                    <span class="cursor">_</span>
+                </div>
+                <div class="hero-math">
+                    <span class="math-symbol" data-i18n="hero-math">∀x ∈ Code: x → Innovation</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-lucide="chevron-down"></i>
+        </div>
     </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="symbol-prefix">∫</span>
+                <span data-i18n="about-title">About Me</span>
+                <span class="title-underline"></span>
+            </h2>
+            <div class="about-content">
+                <div class="about-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="terminal-title">about.sh</div>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> cat about.txt</p>
+                        <p class="output">
+                            <span class="comment" data-i18n="about-comment"></span><br><br>
+                            <span data-i18n="about-text-1"></span><br>
+                            <span data-i18n="about-text-2"></span><br>
+                            <span data-i18n="about-text-3"></span><br>
+                            <span data-i18n="about-text-4"></span><br><br>
+                            <span data-i18n="about-text-5"></span><br>
+                            <span data-i18n="about-text-6"></span><br><br>
+                            <span class="keyword">const</span> passions = [<br>
+                            &nbsp;&nbsp;<span class="string" data-i18n="about-passions-1"></span>,<br>
+                            &nbsp;&nbsp;<span class="string" data-i18n="about-passions-2"></span>,<br>
+                            &nbsp;&nbsp;<span class="string" data-i18n="about-passions-3"></span>,<br>
+                            &nbsp;&nbsp;<span class="string" data-i18n="about-passions-4"></span>,<br>
+                            &nbsp;&nbsp;<span class="string" data-i18n="about-passions-5"></span><br>
+                            ];<br><br>
+                            <span class="comment" data-i18n="about-creative-1"></span><br>
+                            <span class="comment" data-i18n="about-creative-2"></span><br><br>
+                            <span data-i18n="about-hobby-1"></span><br>
+                            <span data-i18n="about-hobby-2"></span><br><br>
+                            <span class="comment" data-i18n="about-collab"></span>
+                        </p>
+                        <p><span class="prompt">$</span> <span class="cursor">_</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="symbol-prefix">Σ</span>
+                <span data-i18n="projects-title">Featured Projects</span>
+                <span class="title-underline"></span>
+            </h2>
+            <div class="projects-grid">
+                <!-- CVisto - SaaS Project -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>∇</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/ericzager0/cvisto" class="card-link" title="GitHub" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">CVisto</h3>
+                    <p class="card-description" data-i18n="project-cvisto-desc">
+                        SaaS platform that empowers job seekers with AI-powered CV generation. 
+                        Users create LinkedIn-style profiles, analyze job postings with Google Gemini, 
+                        and generate tailored resumes exported to DOCX with application tracking.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">React + TypeScript</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">AI (Gemini)</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-cvisto-role">🚀 Co-Founder & Full-Stack Dev</span>
+                        <span class="footer-stat">2025</span>
+                    </div>
+                </div>
+
+                <!-- CIRCULO - E-commerce -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>⊕</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="#" class="card-link" title="Private Repository" style="opacity: 0.5; cursor: not-allowed;">
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">CIRCULO E-commerce</h3>
+                    <p class="card-description" data-i18n="project-circulo-desc">
+                        Full-featured clothing e-commerce platform with vendor dashboard for product 
+                        management, image uploads, stock control, and discounts. Customers can browse, 
+                        filter, and checkout with JWT authentication.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">React + Redux</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-circulo-role">🛍️ Full-Stack Developer</span>
+                        <span class="footer-stat">2025</span>
+                    </div>
+                </div>
+
+                <!-- Mubble Minecraft Mod -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>∞</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/DawnTeamMC/Mubble" class="card-link" title="GitHub" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Mubble (DawnTeamMC)</h3>
+                    <p class="card-description" data-i18n="project-mubble-desc">
+                        Open-source Minecraft mod with 10,000+ downloads. Contributed new gameplay 
+                        features and mechanics as a team member. Built with Java and Kotlin using 
+                        multiple external libraries.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Game Dev</span>
+                        <span class="tag">Open Source</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-mubble-role">⋆ 10K+ Downloads</span>
+                        <span class="footer-stat">2024</span>
+                    </div>
+                </div>
+
+                <!-- Hybrid Database Project -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>∫</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="#" class="card-link" title="Academic Project" style="opacity: 0.5; cursor: not-allowed;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Hybrid Database System</h3>
+                    <p class="card-description" data-i18n="project-hybrid-desc">
+                        Designed and implemented a hybrid database combining PostgreSQL (relational), 
+                        MongoDB (document), and Cassandra (wide-column) to store World Cup data. 
+                        Compared performance and scalability with Python interface.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Cassandra</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-hybrid-role">📊 Database Architecture</span>
+                        <span class="footer-stat">2025</span>
+                    </div>
+                </div>
+
+                <!-- TATLO Game -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>λ</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Napero/TATLO" class="card-link" title="GitHub" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </a>
+                            <a href="https://napero.github.io/TATLO" class="card-link" title="Play Game" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">TATLO (Turn All The Lights Off!)</h3>
+                    <p class="card-description" data-i18n="project-tatlo-desc">
+                        Infinitely replayable puzzle game with customizable boards and colors. 
+                        Built with vanilla JavaScript featuring responsive design and engaging gameplay mechanics.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Game Design</span>
+                        <span class="tag">Puzzle</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-tatlo-role">🎮 Solo Developer</span>
+                        <span class="footer-stat">2024</span>
+                    </div>
+                </div>
+
+                <!-- Algorithm Analysis Project -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span>Σ</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Napero/P3" class="card-link" title="GitHub" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Sudoku Solver Comparison</h3>
+                    <p class="card-description" data-i18n="project-sudoku-desc">
+                        Comparative analysis of backtracking vs. branch and bound algorithms for solving 
+                        Sudoku puzzles. Evaluated efficiency and computational complexity with Python implementation.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Complexity Analysis</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-stat" data-i18n="project-sudoku-role">🧮 Academic Research</span>
+                        <span class="footer-stat">2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="projects-footer">
+                <a href="https://github.com/napero?tab=repositories" class="view-all-btn" target="_blank">
+                    <span class="btn-icon"><i data-lucide="github"></i></span>
+                    <span data-i18n="projects-view-all">View All Repositories on GitHub</span>
+                    <span class="btn-arrow"><i data-lucide="arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="symbol-prefix">π</span>
+                <span data-i18n="skills-title">Technical Skills</span>
+                <span class="title-underline"></span>
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="code-2"></i></span>
+                        <span data-i18n="skills-languages">Languages</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript/TypeScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C/C++</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Rust</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="layout-grid"></i></span>
+                        <span data-i18n="skills-web">Web & Frameworks</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">React/Next.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js/Express</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Spring Boot</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Redux/GraphQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="database"></i></span>
+                        <span data-i18n="skills-databases">Databases</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">PostgreSQL/MySQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 83%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Redis</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Neo4j/Cassandra</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="brain-circuit"></i></span>
+                        <span data-i18n="skills-ai">AI & Data Science</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">TensorFlow/PyTorch</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">scikit-learn</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Pandas/SciPy</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Jupyter/Plotly</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="settings"></i></span>
+                        <span data-i18n="skills-devops">DevOps & Tools</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Git/GitHub</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker/Kubernetes</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AWS</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Linux/Bash</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="palette"></i></span>
+                        <span data-i18n="skills-creative">Creative & Other</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Godot Engine</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Blender</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 68%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Mathematica</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Raspberry Pi</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--skill-level: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="symbol-prefix">∇</span>
+                <span data-i18n="contact-title">Get In Touch</span>
+                <span class="title-underline"></span>
+            </h2>
+            <div class="contact-content">
+                <div class="contact-text">
+                    <p class="contact-intro">
+                        <span class="code-comment" data-i18n="contact-intro">// Let's connect and build something amazing</span>
+                    </p>
+                    <p class="contact-description" data-i18n="contact-description">
+                        I'm always interested in hearing about new projects and opportunities.
+                        Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
+                </div>
+                <div class="contact-links">
+                    <a href="https://github.com/napero" class="contact-btn" target="_blank">
+                        <span class="btn-icon">
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">github.com/napero</span>
+                    </a>
+                    <a href="mailto:franenappa@gmail.com" class="contact-btn">
+                        <span class="btn-icon">@</span>
+                        <span class="btn-text">franenappa@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/francisco-nappa-748ba322a/" class="contact-btn" target="_blank">
+                        <span class="btn-icon">in</span>
+                        <span class="btn-text">Francisco Nappa</span>
+                    </a>
+                    <button id="discord-btn" class="contact-btn" title="Click to copy username">
+                        <span class="btn-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">@napero</span>
+                    </button>
+                </div>
+                <div class="contact-terminal">
+                    <div class="terminal-line">
+                        <span class="prompt">></span>
+                        <span class="command" data-i18n="contact-terminal-1">const collaborate = () => {</span>
+                    </div>
+                    <div class="terminal-line indent">
+                        <span class="keyword">return</span> <span class="string" data-i18n="contact-terminal-2">"Let's build the future together"</span>;
+                    </div>
+                    <div class="terminal-line">
+                        <span class="command">};</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>
+                    <span class="code-comment" data-i18n="footer-built">// Built with passion and math</span>
+                </p>
+                <p class="footer-formula">
+                    lim<sub>t→∞</sub> (learning + coding)<sup>t</sup> = ∞
+                </p>
+                <p class="credit">
+                    © 2025 Francisco Nappa (Napero). <span data-i18n="footer-license">Licensed under</span> <a href="LICENSE" class="license-link" target="_blank">MIT License</a>.
+                </p>
+            </div>
+            <div class="footer-pattern">
+                <div class="pattern-grid"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
