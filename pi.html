@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<title>π</title>
+<body style="background:#000;color:#0f0;word-break:break-all;font-family:monospace">
+<div>digits: <span id="c">0</span></div>
+<div id="p">3.</div>
+<script>
+let q=1n, r=180n, t=60n, i=2n;
+(function f() {
+    let u = 3n*(3n*i+1n)*(3n*i+2n), y = (q*(27n*i-12n)+5n*r)/(5n*t);
+    q = 10n*q*i*(2n*i-1n);
+    r = 10n*u*(q/10n/i/(2n*i-1n)*(5n*i-2n)+r-y*t);
+    t *= u; i++;
+    if (i > 3n) {
+        p.append(Number(y));
+        c.innerText++;
+    }
+    setTimeout(f, 0);
+})();
+</script>

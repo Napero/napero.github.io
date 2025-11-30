@@ -9,21 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="translations.js"></script>
 </head>
 <body>
-    <!-- Background pattern canvas -->
     <canvas id="bg-canvas"></canvas>
-    
-    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
             <div class="logo">
-                <span class="bracket">[</span>
-                <span class="name">Napero</span>
-                <span class="bracket">]</span>
+                <span class="name" id="logo-name">Napero</span>
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link active">
@@ -47,8 +41,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-grid">
@@ -72,8 +64,6 @@
             <i data-lucide="chevron-down"></i>
         </div>
     </section>
-
-    <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">
@@ -120,8 +110,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="section section-alt">
         <div class="container">
             <h2 class="section-title">
@@ -130,7 +118,6 @@
                 <span class="title-underline"></span>
             </h2>
             <div class="projects-grid">
-                <!-- CVisto - SaaS Project -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -161,8 +148,6 @@
                         <span class="footer-stat">2025</span>
                     </div>
                 </div>
-
-                <!-- CIRCULO - E-commerce -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -193,8 +178,6 @@
                         <span class="footer-stat">2025</span>
                     </div>
                 </div>
-
-                <!-- Mubble Minecraft Mod -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -225,8 +208,6 @@
                         <span class="footer-stat">2024</span>
                     </div>
                 </div>
-
-                <!-- Hybrid Database Project -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -258,8 +239,6 @@
                         <span class="footer-stat">2025</span>
                     </div>
                 </div>
-
-                <!-- TATLO Game -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -295,8 +274,6 @@
                         <span class="footer-stat">2024</span>
                     </div>
                 </div>
-
-                <!-- Algorithm Analysis Project -->
                 <div class="project-card">
                     <div class="card-header">
                         <div class="card-icon">
@@ -335,12 +312,10 @@
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">
-                <span class="symbol-prefix">π</span>
+                <span class="symbol-prefix" id="pi-symbol">π</span>
                 <span data-i18n="skills-title">Technical Skills</span>
                 <span class="title-underline"></span>
             </h2>
@@ -353,37 +328,18 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">JavaScript/TypeScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 90%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 88%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Java</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 85%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">C/C++</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Rust</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 70%"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <h3 class="category-title">
                         <span class="category-icon"><i data-lucide="layout-grid"></i></span>
@@ -392,31 +348,18 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">React/Next.js</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 90%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Node.js/Express</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 88%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Spring Boot</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 82%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Redux/GraphQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 80%"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <h3 class="category-title">
                         <span class="category-icon"><i data-lucide="database"></i></span>
@@ -425,31 +368,21 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">PostgreSQL/MySQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 85%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">MongoDB</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 83%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Redis</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 75%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Neo4j/Cassandra</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 70%"></div>
-                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Elasticsearch</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <h3 class="category-title">
                         <span class="category-icon"><i data-lucide="brain-circuit"></i></span>
@@ -458,31 +391,18 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">TensorFlow/PyTorch</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 78%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">scikit-learn</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 80%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Pandas/SciPy</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 82%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Jupyter/Plotly</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 85%"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <h3 class="category-title">
                         <span class="category-icon"><i data-lucide="settings"></i></span>
@@ -491,31 +411,67 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">Git/GitHub</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 92%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Docker/Kubernetes</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 80%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">AWS</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 75%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Linux/Bash</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 88%"></div>
-                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">RabbitMQ</span>
                         </div>
                     </div>
                 </div>
-
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="file-text"></i></span>
+                        <span data-i18n="skills-engineering">Software Engineering</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-uml">UML/Diagramming</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-patterns">Design Patterns</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-testing">Testing/QA</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-debugging">Debugging</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-review">Code Review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon"><i data-lucide="users"></i></span>
+                        <span data-i18n="skills-methodologies">Methodologies & PM</span>
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-agile">Agile/Scrum</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-requirements">Requirements Engineering</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-planning">Project Planning</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-cicd">CI/CD</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name" data-i18n="skill-documentation">Technical Documentation</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="skill-category">
                     <h3 class="category-title">
                         <span class="category-icon"><i data-lucide="palette"></i></span>
@@ -524,35 +480,21 @@
                     <div class="skill-list">
                         <div class="skill-item">
                             <span class="skill-name">Godot Engine</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 75%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Blender</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 68%"></div>
-                            </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Mathematica</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 72%"></div>
-                            </div>
+                            <span class="skill-name">Xcas</span>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Raspberry Pi</span>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="--skill-level: 80%"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="section section-alt">
         <div class="container">
             <h2 class="section-title">
@@ -611,8 +553,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-text">
@@ -623,7 +563,7 @@
                     lim<sub>t→∞</sub> (learning + coding)<sup>t</sup> = ∞
                 </p>
                 <p class="credit">
-                    © 2025 Francisco Nappa (Napero). <span data-i18n="footer-license">Licensed under</span> <a href="LICENSE" class="license-link" target="_blank">MIT License</a>.
+                    © 2025 Francisco Eduardo Nappa (Napero). <span data-i18n="footer-license">Licensed under</span> <a href="LICENSE" class="license-link" target="_blank">MIT License</a>.
                 </p>
             </div>
             <div class="footer-pattern">
@@ -631,7 +571,7 @@
             </div>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
+

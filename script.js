@@ -1,6 +1,3 @@
-// ===================================
-// BACKGROUND CANVAS - Mathematical Pattern
-// ===================================
 
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
@@ -13,6 +10,8 @@ let mouse = { x: 0, y: 0 };
 function resizeCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    
+    initParticles();
 }
 
 class Particle {
@@ -27,17 +26,14 @@ class Particle {
         this.vy = (Math.random() - 0.5) * 0.5;
         this.life = Math.random() * 100;
         this.maxLife = 100;
-        // Randomly assign cyan or blue color
         this.color = Math.random() > 0.5 ? '0, 255, 128' : '128, 128, 255';
     }
     
     update() {
-        // Calculate distance to mouse
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        // Repel from mouse if close
         if (distance < 150) {
             const force = (150 - distance) / 150;
             this.x += (dx / distance) * force * 2;
@@ -48,7 +44,6 @@ class Particle {
         this.y += this.vy;
         this.life--;
         
-        // Wrap around edges
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
         if (this.y < 0) this.y = height;
@@ -68,7 +63,13 @@ class Particle {
 
 function initParticles() {
     particles = [];
-    for (let i = 0; i < 100; i++) {
+    const baseArea = 2073600;
+    const currentArea = width * height;
+    const particleCount = Math.floor((currentArea / baseArea) * 100);
+    
+    const finalCount = Math.max(20, Math.min(150, particleCount));
+    
+    for (let i = 0; i < finalCount; i++) {
         particles.push(new Particle());
     }
 }
@@ -81,7 +82,6 @@ function drawGrid() {
     const offsetX = (time * 0.5) % gridSize;
     const offsetY = (time * 0.5) % gridSize;
     
-    // Vertical lines
     for (let x = offsetX; x < width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -89,7 +89,6 @@ function drawGrid() {
         ctx.stroke();
     }
     
-    // Horizontal lines
     for (let y = offsetY; y < height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -108,10 +107,8 @@ function drawMathSymbols() {
         const y = (Math.cos(time * 0.002 + i) * 0.5 + 0.5) * height;
         const symbol = symbols[Math.floor((time * 0.01 + i) % symbols.length)];
         
-        // Alternate colors for symbols
         const color = i % 2 === 0 ? '0, 255, 128' : '128, 128, 255';
         
-        // Check distance to mouse and make symbols react
         const dx = x - mouse.x;
         const dy = y - mouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -143,7 +140,6 @@ function animate() {
         particle.draw();
     });
     
-    // Connect mouse to nearby particles
     particles.forEach(particle => {
         const dx = particle.x - mouse.x;
         const dy = particle.y - mouse.y;
@@ -160,7 +156,6 @@ function animate() {
         }
     });
     
-    // Connect nearby particles
     for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
@@ -168,12 +163,10 @@ function animate() {
             const distance = Math.sqrt(dx * dx + dy * dy);
             
             if (distance < 150) {
-                // Check if either particle is near the mouse
                 const distToMouse1 = Math.sqrt(Math.pow(particles[i].x - mouse.x, 2) + Math.pow(particles[i].y - mouse.y, 2));
                 const distToMouse2 = Math.sqrt(Math.pow(particles[j].x - mouse.x, 2) + Math.pow(particles[j].y - mouse.y, 2));
                 const nearMouse = Math.min(distToMouse1, distToMouse2) < 200;
                 
-                // Use color based on particles and increase opacity near mouse
                 const color1 = particles[i].color;
                 const color2 = particles[j].color;
                 const avgColor = color1 === color2 ? color1 : '104, 192, 192'; // Mix to teal if different
@@ -199,7 +192,6 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Initialize
 resizeCanvas();
 initParticles();
 animate();
@@ -209,13 +201,11 @@ window.addEventListener('resize', () => {
     initParticles();
 });
 
-// Track mouse movement for particle interaction
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
 });
 
-// Touch support for mobile
 window.addEventListener('touchmove', (e) => {
     if (e.touches.length > 0) {
         mouse.x = e.touches[0].clientX;
@@ -223,9 +213,6 @@ window.addEventListener('touchmove', (e) => {
     }
 });
 
-// ===================================
-// NAVIGATION
-// ===================================
 
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section, .hero');
@@ -251,23 +238,24 @@ function setActiveLink() {
 
 window.addEventListener('scroll', setActiveLink);
 
-// Smooth scroll
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
+        
+        if (!targetId || !targetId.startsWith('#')) return;
+        
         const targetSection = document.querySelector(targetId);
         
-        window.scrollTo({
-            top: targetSection.offsetTop - 80,
-            behavior: 'smooth'
-        });
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// ===================================
-// TYPING ANIMATION
-// ===================================
 
 const typedTextSpan = document.querySelector('.typed-text');
 const texts = [
@@ -307,12 +295,8 @@ function typeText() {
     setTimeout(typeText, typingDelay);
 }
 
-// Start typing animation after a short delay
 setTimeout(typeText, 1000);
 
-// ===================================
-// SCROLL ANIMATIONS
-// ===================================
 
 const observerOptions = {
     threshold: 0.1,
@@ -323,18 +307,15 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all project cards, skill categories, and sections
 document.querySelectorAll('.project-card, .skill-category, .about-terminal, .contact-content').forEach(el => {
     observer.observe(el);
 });
 
-// ===================================
-// SKILL BARS ANIMATION
-// ===================================
 
 const skillBars = document.querySelectorAll('.skill-fill');
 const skillObserver = new IntersectionObserver((entries) => {
@@ -349,9 +330,6 @@ skillBars.forEach(bar => {
     skillObserver.observe(bar);
 });
 
-// ===================================
-// PARALLAX SCROLL EFFECT
-// ===================================
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
@@ -363,9 +341,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ===================================
-// PROJECT CARD TILT EFFECT
-// ===================================
 
 const projectCards = document.querySelectorAll('.project-card');
 
@@ -389,31 +364,21 @@ projectCards.forEach(card => {
     });
 });
 
-// ===================================
-// EASTER EGG - Console Message
-// ===================================
 
-console.log('%c█▀▀▄ █▀▀█ █▀▀█ █▀▀ █▀▀█ █▀▀█', 'color: #8b8b9a; font-weight: bold; font-size: 16px;');
-console.log('%c█  █ █▄▄█ █  █ █▀▀ █▄▄▀ █  █', 'color: #8b8b9a; font-weight: bold; font-size: 16px;');
-console.log('%c▀  ▀ ▀  ▀ █▀▀▀ ▀▀▀ ▀ ▀▀ ▀▀▀▀', 'color: #8b8b9a; font-weight: bold; font-size: 16px;');
-console.log('%c\n👋 Hey there, fellow developer!\n\nLooks like you\'re curious about how this site works.\nFeel free to explore the code and reach out if you want to collaborate!\n\n∀x ∈ Code: x → Innovation\n', 'color: #a0a0ab; font-size: 14px; line-height: 1.5;');
+console.log('%c█▀▀▄ █▀▀█ █▀▀█ █▀▀ █▀▀█ █▀▀█', 'color: #8a8a8a; font-weight: bold; font-size: 16px;');
+console.log('%c█  █ █▄▄█ █  █ █▀▀ █▄▄▀ █  █', 'color: #8a8a8a; font-weight: bold; font-size: 16px;');
+console.log('%c▀  ▀ ▀  ▀ █▀▀▀ ▀▀▀ ▀ ▀▀ ▀▀▀▀', 'color: #8a8a8a; font-weight: bold; font-size: 16px;');
+console.log('%c\nHey!\n\nLooks like you\'re curious about how my site works.\nFeel free to explore the code and reach out if you want to collaborate! :D\n\n∀x ∈ Code: x → Innovation\n', 'color: #a0a0a0; font-size: 14px; line-height: 1.5;');
 
-// ===================================
-// PERFORMANCE OPTIMIZATION
-// ===================================
 
-// Reduce animation complexity on lower-end devices
 if (window.innerWidth < 768 || window.devicePixelRatio > 2) {
     particles = particles.slice(0, 50);
 }
 
-// Pause canvas animation when tab is not visible
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        // Tab is hidden, reduce resource usage
         particles.forEach(p => p.vx = p.vy = 0);
     } else {
-        // Tab is visible again, restore movement
         particles.forEach(p => {
             p.vx = (Math.random() - 0.5) * 0.5;
             p.vy = (Math.random() - 0.5) * 0.5;
@@ -421,15 +386,11 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// ===================================
-// KEYBOARD NAVIGATION
-// ===================================
 
 let currentSectionIndex = 0;
 const sectionIds = ['home', 'about', 'projects', 'skills', 'contact'];
 
 document.addEventListener('keydown', (e) => {
-    // Navigate with arrow keys
     if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
         currentSectionIndex = Math.min(currentSectionIndex + 1, sectionIds.length - 1);
@@ -451,31 +412,150 @@ function navigateToSection(index) {
     }
 }
 
-// ===================================
-// INIT
-// ===================================
 
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     setActiveLink();
     
-    // Initialize Lucide icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
     
-    // Initialize language
     if (typeof initLanguage === 'function') {
         initLanguage();
     }
     
-    // Setup language toggle button
     const langToggle = document.getElementById('lang-toggle');
     if (langToggle && typeof toggleLanguage === 'function') {
         langToggle.addEventListener('click', toggleLanguage);
     }
     
-    // Discord username copy button
+    
+    const catGifs = [
+        "https://www.nyan.cat/cats/404.gif",
+        "https://www.nyan.cat/cats/america.gif",
+        "https://www.nyan.cat/cats/balloon.gif",
+        "https://www.nyan.cat/cats/bday.gif",
+        "https://www.nyan.cat/cats/daft.gif",
+        "https://www.nyan.cat/cats/dub.gif",
+        "https://www.nyan.cat/cats/easter.gif",
+        "https://www.nyan.cat/cats/elevator.gif",
+        "https://www.nyan.cat/cats/fat.gif",
+        "https://www.nyan.cat/cats/fiesta.gif",
+        "https://www.nyan.cat/cats/floppy.gif",
+        "https://www.nyan.cat/cats/gb.gif",
+        "https://www.nyan.cat/cats/grumpy.gif",
+        "https://www.nyan.cat/cats/j5.gif",
+        "https://www.nyan.cat/cats/jazz.gif",
+        "https://www.nyan.cat/cats/manyan.gif",
+        "https://www.nyan.cat/cats/melon.gif",
+        "https://www.nyan.cat/cats/mexinyan.gif",
+        "https://www.nyan.cat/cats/mummy.gif",
+        "https://www.nyan.cat/cats/newyear.gif",
+        "https://www.nyan.cat/cats/nyancoin.gif",
+        "https://www.nyan.cat/cats/nyandoge.gif",
+        "https://www.nyan.cat/cats/nyaninja.gif",
+        "https://www.nyan.cat/cats/oldnewyear.gif",
+        "https://www.nyan.cat/cats/original.gif",
+        "https://www.nyan.cat/cats/paddy.gif",
+        "https://www.nyan.cat/cats/pikanyan.gif",
+        "https://www.nyan.cat/cats/pirate.gif",
+        "https://www.nyan.cat/cats/pumpkin.gif",
+        "https://www.nyan.cat/cats/rasta.gif",
+        "https://www.nyan.cat/cats/retro.gif",
+        "https://www.nyan.cat/cats/sad.gif",
+        "https://www.nyan.cat/cats/skrillex.gif",
+        "https://www.nyan.cat/cats/slomo.gif",
+        "https://www.nyan.cat/cats/smurfcat.gif",
+        "https://www.nyan.cat/cats/star.gif",
+        "https://www.nyan.cat/cats/tacnayn.gif",
+        "https://www.nyan.cat/cats/tacodog.gif",
+        "https://www.nyan.cat/cats/technyancolor.gif",
+        "https://www.nyan.cat/cats/toaster.gif",
+        "https://www.nyan.cat/cats/vday.gif",
+        "https://www.nyan.cat/cats/watermelon.gif",
+        "https://www.nyan.cat/cats/wtf.gif",
+        "https://www.nyan.cat/cats/xmas.gif",
+        "https://www.nyan.cat/cats/zombie.gif"
+    ];
+    
+    function getRandomCatGif() {
+        const randomIndex = Math.floor(Math.random() * catGifs.length);
+        return catGifs[randomIndex];
+    }
+    
+    function spawnNyanCat() {
+        const cat = document.createElement('img');
+        cat.src = getRandomCatGif();
+        cat.style.position = 'fixed';
+        cat.style.width = '150px';
+        cat.style.height = 'auto';
+        cat.style.zIndex = '9999';
+        cat.style.pointerEvents = 'none';
+        
+        const startY = Math.random() * (window.innerHeight - 100);
+        cat.style.left = '-150px';
+        cat.style.top = startY + 'px';
+        
+        document.body.appendChild(cat);
+        
+        let posX = -150;
+        const speed = 3 + Math.random() * 3; // Random speed
+        
+        const animationInterval = setInterval(() => {
+            posX += speed;
+            cat.style.left = posX + 'px';
+            
+            if (posX > window.innerWidth) {
+                clearInterval(animationInterval);
+                cat.remove();
+            }
+        }, 16); // ~60fps
+    }
+    
+    let clickCount = 0;
+    let clickTimeout;
+    const logoName = document.getElementById('logo-name');
+    
+    if (logoName) {
+        logoName.style.cursor = 'pointer';
+        logoName.addEventListener('click', () => {
+            clickCount++;
+            
+            clearTimeout(clickTimeout);
+            clickTimeout = setTimeout(() => {
+                clickCount = 0;
+            }, 2000);
+            
+            if (clickCount === 5) {
+                spawnNyanCat();
+                clickCount = 0;
+            }
+        });
+    }
+    
+    
+    let piClickCount = 0;
+    let piClickTimeout;
+    const piSymbol = document.getElementById('pi-symbol');
+    
+    if (piSymbol) {
+        piSymbol.style.cursor = 'pointer';
+        piSymbol.addEventListener('click', () => {
+            piClickCount++;
+            
+            clearTimeout(piClickTimeout);
+            piClickTimeout = setTimeout(() => {
+                piClickCount = 0;
+            }, 2000);
+            
+            if (piClickCount === 5) {
+                window.location.href = 'pi.html';
+                piClickCount = 0;
+            }
+        });
+    }
+    
     const discordBtn = document.getElementById('discord-btn');
     if (discordBtn) {
         discordBtn.addEventListener('click', async () => {
