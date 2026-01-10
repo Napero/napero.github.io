@@ -1,0 +1,146 @@
+{
+    "projects": [
+        {
+            "id": "cvisto",
+            "title": "CVisto",
+            "description": "AI-powered SaaS platform that helps users create LinkedIn-style profiles, analyze job postings with AI, and generate tailored CVs for each application (exportable as DOCX), with application tracking.",
+            "tags": [
+                "React",
+                "TypeScript",
+                "Node.js",
+                "Gemini API",
+                "PostgreSQL"
+            ],
+            "link": "https://github.com/ericzager0/cvisto",
+            "image": "",
+            "featured": true,
+            "status": "completed"
+        },
+        {
+            "id": "circulo",
+            "title": "CIRCULO",
+            "description": "Full-stack e-commerce platform for clothing. Sellers can publish products with images, manage stock and discounts. Buyers can explore the catalog, filter, view details and checkout.",
+            "tags": [
+                "Java",
+                "Spring Boot",
+                "React",
+                "Redux",
+                "MySQL",
+                "Docker",
+                "JWT"
+            ],
+            "link": "",
+            "image": "",
+            "featured": true,
+            "status": "completed"
+        },
+        {
+            "title": "Calcu",
+            "description": "Scientific RPN/RPL calculator with computer algebra system. Command-line calculator inspired by HP-48/HP-50g with reverse polish notation and 560+ built-in operators: symbolic algebra, numerical calculus, statistics, graph theory (80+ operators), automata & formal languages, cryptography, TVM financial functions, physical units, 2D/3D plotting, and RPL programming.",
+            "status": "in-progress",
+            "tags": [
+                "Rust",
+                "CAS",
+                "CLI",
+                "Math"
+            ],
+            "featured": true
+        },
+        {
+            "id": "beccat",
+            "title": "BECCAT",
+            "description": "Educational video game that teaches logic, math and programming to children aged 8-15 through puzzles and a narrative starring cats. Currently in development.",
+            "tags": [
+                "Game Dev",
+                "Education"
+            ],
+            "link": "",
+            "image": "",
+            "featured": false,
+            "status": "in-progress"
+        },
+        {
+            "id": "portfolio",
+            "title": "Personal Website",
+            "description": "Online portfolio with projects and technical blog, responsive and SEO optimized. Built as a single-page application with custom routing and markdown blog system.",
+            "tags": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "SPA"
+            ],
+            "link": "https://napero.github.io",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
+            "id": "tatlo",
+            "title": "TATLO",
+            "description": "Turn All The Lights Off! An infinitely replayable puzzle game with customizable boards and colors.",
+            "tags": [
+                "JavaScript",
+                "Game",
+                "Puzzle"
+            ],
+            "link": "https://github.com/Napero/TATLO",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
+            "id": "mubble",
+            "title": "Mubble (Contributor)",
+            "description": "Minecraft mod with 10,000+ downloads. Contributed features as a member of DawnTeamMC, significantly expanding gameplay.",
+            "tags": [
+                "Java",
+                "Kotlin",
+                "Minecraft",
+                "Modding"
+            ],
+            "link": "https://github.com/DawnTeamMC/Mubble",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
+            "id": "ing-datos-2",
+            "title": "Hybrid Database System",
+            "description": "Full-stack database project combining PostgreSQL (relational), MongoDB and Apache Cassandra (NoSQL) to store and query FIFA World Cup data. Compared performance and scalability between relational and NoSQL models.",
+            "tags": [
+                "PostgreSQL",
+                "MongoDB",
+                "Cassandra",
+                "Python"
+            ],
+            "link": "",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
+            "id": "prog3",
+            "title": "Sudoku Solver",
+            "description": "Comparative analysis of algorithm efficiency and complexity for solving Sudokus using backtracking and branch & bound techniques.",
+            "tags": [
+                "Python",
+                "Algorithms",
+                "Backtracking"
+            ],
+            "link": "https://github.com/Napero/P3",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
+            "title": "Data Structures Project",
+            "description": "Implementation of abstract data types and balanced tree structures in Java.",
+            "status": "completed",
+            "tags": [
+                "Java",
+                "Data Structures",
+                "Trees"
+            ]
+        }
+    ]
+}

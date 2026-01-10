@@ -1,0 +1,14 @@
+{
+    "id": "full-site-editing-python-tool",
+    "title": "Full site editing python tool",
+    "date": "2026-01-10",
+    "summary": "I updated the tool I talked about on the previous post to let me edit the whole page.",
+    "content": "The script I talked about on the previous post now has **3** tabs. One for creating and editing *Blog* posts, another for *Projects,* and another for my *About* page descriptions and skills.\n\nThis is the Blog tab:\n\n![blog tab](images/pasted_20260110_002009.png)\n\nThis is the Projects tab:\n\n![projects tab](images/pasted_20260110_002036.png)\n\nAnd this is the About tab:\n\n![about tab](images/pasted_20260110_002057.png)\n\nI also made it so that it lets me **Ctrl+V** images so I can easily add screenshots!",
+    "tags": [
+        "python",
+        "blog",
+        "website",
+        "programming"
+    ],
+    "featured": false
+}

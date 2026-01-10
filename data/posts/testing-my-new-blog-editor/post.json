@@ -1,0 +1,13 @@
+{
+    "id": "testing-my-new-blog-editor",
+    "title": "Testing my new blog editor",
+    "date": "2026-01-08",
+    "summary": "GitHub hosts my blog for free!",
+    "content": "I made a new convenient way of editing and adding new posts keeping this site as a static page for free GitHub hosting.\nIt consists on a python script with a GUI where i can manage and edit app my posts. It also has a **rich** *text* `editor`!\n\nTake a look at it below:\n![image of my tool](images/python_j7uJxhjM0v.png)",
+    "tags": [
+        "python",
+        "programming",
+        "blog"
+    ],
+    "featured": false
+}
