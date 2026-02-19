@@ -89,6 +89,21 @@
             "status": "completed"
         },
         {
+            "id": "multiminesweeper",
+            "title": "MultiMinesweeper",
+            "description": "My custom take on Minesweeper with fully customizable boards, multiple mines per cell, negative mines, and different grid shapes and topologies. Open-source project with code available on GitHub.",
+            "tags": [
+                "JavaScript",
+                "Game",
+                "Puzzle",
+                "Minesweeper"
+            ],
+            "link": "https://napero.github.io/multiminesweeper",
+            "image": "",
+            "featured": false,
+            "status": "completed"
+        },
+        {
             "id": "mubble",
             "title": "Mubble (Contributor)",
             "description": "Minecraft mod with 10,000+ downloads. Contributed features as a member of DawnTeamMC, significantly expanding gameplay.",

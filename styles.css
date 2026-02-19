@@ -88,6 +88,10 @@ a:hover {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 3px #ffffff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .content {
@@ -346,41 +350,27 @@ a:hover {
 }
 
 /* Nyan Cat Easter Egg */
-.nyan-cat {
+.nyan-cat-instance {
     position: fixed;
-    left: -200px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: calc(-1 * var(--nyan-size, 140px));
+    top: var(--nyan-start-y, 50%);
     z-index: 9999;
-    pointer-events: none;
-}
-
-.nyan-cat img {
-    width: 150px;
     height: auto;
+    pointer-events: none;
+    animation-name: nyanFlyAcross;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    will-change: left, top;
 }
 
-.nyan-cat.flying {
-    animation: nyanFly 4s linear forwards;
-}
-
-@keyframes nyanFly {
+@keyframes nyanFlyAcross {
     0% {
-        left: -200px;
-        top: 50%;
-    }
-    25% {
-        top: 30%;
-    }
-    50% {
-        top: 60%;
-    }
-    75% {
-        top: 40%;
+        left: calc(-1 * var(--nyan-size, 140px));
+        top: var(--nyan-start-y, 50%);
     }
     100% {
-        left: 110%;
-        top: 50%;
+        left: 110vw;
+        top: var(--nyan-end-y, 50%);
     }
 }
 

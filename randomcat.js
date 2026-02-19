@@ -50,9 +50,33 @@ function getRandomCatGif() {
     const randomIndex = Math.floor(Math.random() * catGifs.length);
     return catGifs[randomIndex];
 }
-  
-document.addEventListener("DOMContentLoaded", function() {
-    const catImg = document.getElementById("catGif");
+
+function getRandomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function spawnRandomNyanCat() {
+    const catImg = document.createElement("img");
+    const size = Math.round(getRandomBetween(90, 220));
+    const duration = getRandomBetween(2.5, 7);
+    const startY = getRandomBetween(10, 85);
+    const endY = Math.min(90, Math.max(5, startY + getRandomBetween(-20, 20)));
+
+    catImg.className = "nyan-cat-instance";
     catImg.src = getRandomCatGif();
-});
-  
+    catImg.alt = "Nyan Cat";
+    catImg.style.width = `${size}px`;
+    catImg.style.setProperty("--nyan-size", `${size}px`);
+    catImg.style.setProperty("--nyan-start-y", `${startY}%`);
+    catImg.style.setProperty("--nyan-end-y", `${endY}%`);
+    catImg.style.animationDuration = `${duration.toFixed(2)}s`;
+
+    document.body.appendChild(catImg);
+
+    const cleanup = () => catImg.remove();
+    catImg.addEventListener("animationend", cleanup, { once: true });
+    catImg.addEventListener("error", cleanup, { once: true });
+}
+
+window.getRandomCatGif = getRandomCatGif;
+window.spawnRandomNyanCat = spawnRandomNyanCat;

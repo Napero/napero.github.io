@@ -149,28 +149,12 @@ const Router = {
     
     initNyanCatEasterEgg() {
         const name = document.getElementById('nameTitle');
-        const nyanCat = document.getElementById('nyanCat');
-        if (!name || !nyanCat) return;
-        
-        let clicks = 0;
-        let lastClick = 0;
-        const clickWindow = 1500;
+        if (!name) return;
         
         name.style.cursor = 'pointer';
-        name.addEventListener('click', function() {
-            const now = Date.now();
-            if (now - lastClick > clickWindow) {
-                clicks = 0;
-            }
-            lastClick = now;
-            clicks++;
-            
-            if (clicks >= 5) {
-                clicks = 0;
-                nyanCat.classList.add('flying');
-                setTimeout(() => {
-                    nyanCat.classList.remove('flying');
-                }, 4000);
+        name.addEventListener('click', () => {
+            if (typeof window.spawnRandomNyanCat === 'function') {
+                window.spawnRandomNyanCat();
             }
         });
     }
