@@ -2,12 +2,28 @@
 const Router = {
     contentContainer: null,
     currentPage: null,
+    konamiIndex: 0,
+    nameGifUnlocked: false,
+    konamiSequence: [
+        'ArrowUp',
+        'ArrowUp',
+        'ArrowDown',
+        'ArrowDown',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowLeft',
+        'ArrowRight',
+        'b',
+        'a',
+        'Enter'
+    ],
     
     init() {
         this.contentContainer = document.getElementById('page-content');
         
         // Handle navigation clicks
         this.bindNavLinks();
+        this.bindKonamiSequence();
         
         // Handle hash changes (browser back/forward and direct links)
         window.addEventListener('hashchange', () => {
@@ -143,6 +159,9 @@ const Router = {
                 break;
             case 'home':
                 this.initNyanCatEasterEgg();
+                if (this.nameGifUnlocked) {
+                    this.applyKonamiGifName();
+                }
                 break;
         }
     },
@@ -152,11 +171,97 @@ const Router = {
         if (!name) return;
         
         name.style.cursor = 'pointer';
+        name.title = 'Click for Nyan Cat';
         name.addEventListener('click', () => {
             if (typeof window.spawnRandomNyanCat === 'function') {
                 window.spawnRandomNyanCat();
             }
         });
+    },
+
+    bindKonamiSequence() {
+        window.addEventListener('keydown', (event) => {
+            this.handleKonamiKey(event);
+        });
+    },
+
+    handleKonamiKey(event) {
+        if (this.currentPage !== 'home') {
+            this.konamiIndex = 0;
+            return;
+        }
+
+        const pressed = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+        const expected = this.konamiSequence[this.konamiIndex];
+
+        if (pressed === expected) {
+            this.konamiIndex += 1;
+            if (this.konamiIndex === this.konamiSequence.length) {
+                this.konamiIndex = 0;
+                this.nameGifUnlocked = true;
+                this.applyKonamiGifName();
+            }
+            return;
+        }
+
+        this.konamiIndex = pressed === this.konamiSequence[0] ? 1 : 0;
+    },
+
+    applyKonamiGifName() {
+        const name = document.getElementById('nameTitle');
+        if (!name || name.dataset.konamiGif === '1') return;
+
+        const rawText = (name.textContent || '').trim();
+        if (!rawText) return;
+
+        const row = document.createElement('span');
+        row.className = 'konami-gif-row';
+
+        [...rawText].forEach((char, index) => {
+            if (char === ' ') {
+                const spacer = document.createElement('span');
+                spacer.className = 'konami-gif-space';
+                spacer.textContent = ' ';
+                row.appendChild(spacer);
+                return;
+            }
+
+            const normalized = char.toLowerCase();
+            const supportsGif = /^[a-z0-9]$/.test(normalized);
+            const hueOffset = `${index * 36}deg`;
+            const hueDelay = `${(index * 0.18).toFixed(2)}s`;
+
+            if (!supportsGif) {
+                row.appendChild(this.createGifFallback(char, hueOffset, hueDelay));
+                return;
+            }
+
+            const gif = document.createElement('img');
+            gif.className = 'konami-gif-letter';
+            gif.src = `https://dance.the404.nl/img/${normalized}.gif`;
+            gif.alt = char.toUpperCase();
+            gif.loading = 'lazy';
+            gif.style.setProperty('--hue-offset', hueOffset);
+            gif.style.setProperty('--hue-delay', hueDelay);
+            gif.addEventListener('error', () => {
+                gif.replaceWith(this.createGifFallback(char, hueOffset, hueDelay));
+            }, { once: true });
+            row.appendChild(gif);
+        });
+
+        name.dataset.konamiGif = '1';
+        name.classList.add('konami-gif-name');
+        name.textContent = '';
+        name.appendChild(row);
+    },
+
+    createGifFallback(char, hueOffset, hueDelay) {
+        const fallback = document.createElement('span');
+        fallback.className = 'konami-gif-fallback';
+        fallback.textContent = char;
+        fallback.style.setProperty('--hue-offset', hueOffset);
+        fallback.style.setProperty('--hue-delay', hueDelay);
+        return fallback;
     }
 };
 

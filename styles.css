@@ -908,3 +908,57 @@ main {
     transform: scale(1.02);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
+
+/* Konami name easter egg */
+.name.konami-gif-name {
+    background: none;
+    -webkit-text-fill-color: initial;
+    -webkit-text-stroke: 0;
+    color: #ffffff;
+}
+
+.konami-gif-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.konami-gif-space {
+    width: 0.55em;
+}
+
+.konami-gif-letter {
+    display: block;
+    width: auto;
+    height: 0.9em;
+    image-rendering: pixelated;
+    will-change: filter;
+    animation: konamiHueShift 3.1s linear infinite;
+    animation-delay: var(--hue-delay, 0s);
+}
+
+.konami-gif-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0.72em;
+    height: 0.9em;
+    font-size: 0.56em;
+    font-family: 'Fira Mono', monospace;
+    font-weight: 700;
+    color: #ffffff;
+    will-change: filter;
+    animation: konamiHueShift 3.1s linear infinite;
+    animation-delay: var(--hue-delay, 0s);
+}
+
+@keyframes konamiHueShift {
+    0% {
+        filter: hue-rotate(var(--hue-offset, 0deg)) saturate(1.6) drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+    }
+    100% {
+        filter: hue-rotate(calc(var(--hue-offset, 0deg) + 360deg)) saturate(1.6) drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+    }
+}
